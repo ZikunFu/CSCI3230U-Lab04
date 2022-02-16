@@ -20,11 +20,11 @@ table.board tr {
 }
 
     table.board tr:nth-child(3n) {
-        border-bottom: 2px solid red;
+        border-bottom: 2px solid #000000;
     }
 
 table.board td:nth-child(3n) {
-    border-right: 2px solid blue;
+    border-right: 2px solid #000000;
 }
 
 table.board td:hover {
