@@ -1,0 +1,20 @@
+Board Design
+The primary feature of the main web page is the sudoku board.  This will be implemented as a 9x9 table, with appropriate styling (see the figures, below).  The board must be centered horizontally on the page, and each column and row must be consistent sizing.  For the purposes of this part of the lab, hard code the values shown in the sample below.  The table will be given the id `board` for easy styling and element lookups in JavaScript, later.  Try to match the font and font size as closely as possible, and use the various screenshots throughout this document to match the layout, table borders, and other styling.
+
+![the sudoku board](documentation_images/sudoku_board.png)
+
+_Figure 1 - The sudoku board_
+
+Below the game board, there will be another table consisting of every digit, except zero (`1`-`9`), as well as an undo icon (`images/undo.png`).
+
+![the numbers palette](documentation_images/palette.png)
+
+_Figure 2 - The numbers palette_
+
+_**Note**:  All styling information should be included in the provided CSS file (`sudoku.css`)._
+
+
+Additional Styling
+When the cursor hovers over a cell in the Sudoku board, or in the numbers palette, it should change its background colour to `#f5dd90`.  Create two additional CSS classes, which will be used in the next part:
+- `user-input` - will set the background colour to `#f2f2f2`
+- `error` - will set the background colour to `#f76c5e`
