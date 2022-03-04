@@ -68,22 +68,6 @@
         }
 
     }
-    Vboard[0][1] = 1;
-    Vboard[0][7] = 9;
-    Vboard[1][2] = 4;
-    Vboard[1][6] = 2;
-    Vboard[2][2] = 8;
-    Vboard[2][5] = 5;
-    Vboard[3][7] = 3;
-    Vboard[4][0] = 2;
-    Vboard[4][4] = 4;
-    Vboard[4][6] = 1;
-    Vboard[6][2] = 1;
-    Vboard[6][3] = 8;
-    Vboard[6][6] = 6;
-    Vboard[7][1] = 3;
-    Vboard[7][7] = 8;
-    Vboard[8][2] = 6;
 
     Vboard[1][0] = 1;
     Vboard[7][0] = 9;
