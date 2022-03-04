@@ -7,7 +7,7 @@
         let tr = $('<tr>');
         for (let col = 0; col <= 8; col++) {
             let data = $('<td>');
-            data.text('');
+            data.text('-1');
             data.attr('id', '' + col + row);
             data.click(boardOnClick)
             tr.append(data);
@@ -16,6 +16,25 @@
         board.append(tr);
         
     }
+
+    //custom board
+    getCell('01').text('1');
+    getCell('07').text('9');
+    getCell('12').text('4');
+    getCell('16').text('2');
+    getCell('22').text('8');
+    getCell('25').text('5');
+    getCell('37').text('3');
+    getCell('40').text('2');
+    getCell('44').text('4');
+    getCell('46').text('1');
+    getCell('62').text('1');
+    getCell('63').text('8');
+    getCell('66').text('6');
+    getCell('71').text('3');
+    getCell('77').text('8');
+    getCell('82').text('6');
+
     
     //generate interface table
     for (let i = 0; i <= 8; i++) {
@@ -32,9 +51,9 @@
             data.append(img);
             data.click(redo);
         }
-        
-        
     }
+
+
 
     //create 2d array of board for check purposes
     var Vboard = new Array(9);
@@ -45,10 +64,43 @@
     for (var row = 0; row < Vboard.length; row++) {
 
         for (var col = 0; col < Vboard[row].length; col++) {
-            Vboard[row][col] = '';
+            Vboard[row][col] = '-1';
         }
 
     }
+    Vboard[0][1] = 1;
+    Vboard[0][7] = 9;
+    Vboard[1][2] = 4;
+    Vboard[1][6] = 2;
+    Vboard[2][2] = 8;
+    Vboard[2][5] = 5;
+    Vboard[3][7] = 3;
+    Vboard[4][0] = 2;
+    Vboard[4][4] = 4;
+    Vboard[4][6] = 1;
+    Vboard[6][2] = 1;
+    Vboard[6][3] = 8;
+    Vboard[6][6] = 6;
+    Vboard[7][1] = 3;
+    Vboard[7][7] = 8;
+    Vboard[8][2] = 6;
+
+    Vboard[1][0] = 1;
+    Vboard[7][0] = 9;
+    Vboard[2][1] = 4;
+    Vboard[6][1] = 2;
+    Vboard[2][2] = 8;
+    Vboard[5][2] = 5;
+    Vboard[7][3] = 3;
+    Vboard[0][4] = 2;
+    Vboard[4][4] = 4;
+    Vboard[6][4] = 1;
+    Vboard[2][6] = 1;
+    Vboard[3][6] = 8;
+    Vboard[6][6] = 6;
+    Vboard[1][7] = 3;
+    Vboard[7][7] = 8;
+    Vboard[2][8] = 6;
 
     //monitor user input on interface
     var inputValue = '';
@@ -60,15 +112,20 @@
 
     //clear last step
     function redo() {
-        Vboard[lastStep_id[0]][lastStep_id[1]]
-        getCell(lastStep_id).text('');
-        getCell(lastStep_id).css("background-color", "");
+        Vboard[lastStep_id[0]][lastStep_id[1]] = -1;
+        getCell(lastStep_id).text('-1');
+        
+        for (var i = 0; i < 9; i++) {
+            for (var y = 0; y < 9; y++) {
+                getCell(''+i+y).css("background-color", "");
+            }
+        }
     }
 
     //monitor user input on board
     function boardOnClick() {
         var selected_value = $(this).text();
-        if (selected_value != '') {
+        if (selected_value != '-1') {
             alert("This spot is taken");
         }
         if (inputValue == '') {
@@ -96,13 +153,12 @@
             }
             //check failed scenario
             else {
+
                 $(this).css("background-color", "#f76c5e");
                 lastStep_id = selected_id;
             }
             
-        }
-        
-        
+        }        
     }
 
     //take value and position as argument
@@ -120,18 +176,30 @@
 
                 //This checks if board contains same value
                 //also avoid checking itself
-                if (value == Vboard[row][col] && (!(id1 === id2))) {
+                if (value == Vboard[row][col] && (!(id1 == id2))) {
                     //check for row
                     if (sameRow(x1, y1, col, row)) {
+                        //change color to red
+                        for (var i = 0; i < 9; i++){
+                            getCell('' + i + id1[1]).css("background-color", "#f76c5e");
+                        }
                         check1 = false
+                        break;
                     }
                     //check for column
                     if (sameColumn(x1, y1, col, row)) {
+                        console.log("position " + id1 + " is in the same column with " + id2)
+                        //change color to red
+                        for (var i = 0; i < 9; i++) {
+                            getCell('' + id1[0] + i).css("background-color", "#f76c5e");
+                        }
                         check2 = false;
+                        break;
                     }
                     //check for block
                     if (sameBlock(x1, y1, col, row)) {
                         check3 = false;
+                        break;
                     }
                 }
                            
