@@ -109,12 +109,12 @@
     //monitor user input on board
     function boardOnClick() {
         var selected_value = $(this).text();
-        if (selected_value != '-1') {
-            alert("This spot is taken");
-        }
         if (inputValue == '') {
             alert("Pick a number first");
-            
+
+        }
+        else if (selected_value != '-1') {
+            alert("This spot is taken");
         }
         else {
             
@@ -136,13 +136,58 @@
                 lastStep_id = selected_id;
             }
             //check failed scenario
-            else {
+            else{
 
                 $(this).css("background-color", "#f76c5e");
                 lastStep_id = selected_id;
             }
             
         }        
+
+    }
+
+    //these functions handle same block errors
+    function turnRed(rowStart,rowEnd, colStart,colEnd) {
+        for (var i = rowStart; i < rowEnd; i++){
+            for (var y = colStart; y < colEnd; y++) {
+                getCell('' + i + y).css("background-color", "#f76c5e");
+            }
+        }
+    }
+    function blockRed(id1) {
+        var row = id1[0];
+        var col = id1[1];
+
+        if (row < 3 && col < 3) {
+            turnRed(0, 3, 0, 3);
+        }
+        else if (row < 3 && col < 6) {
+            turnRed(0, 3, 3, 6);
+        }
+        else if (row < 3 && col < 9) {
+            turnRed(0, 3, 6, 9);
+        }
+
+        else if (row < 6 && col < 3) {
+            turnRed(3, 6, 0, 3);
+        }
+        else if (row < 6 && col < 6) {
+            turnRed(3, 6, 3, 6);
+        }
+        else if (row < 6 && col < 9) {
+            turnRed(3, 6, 6, 9);
+        }
+        else if (row < 9 && col < 3) {
+            turnRed(6, 9, 0, 3);
+        }
+        else if (row < 9 && col < 6) {
+            turnRed(6, 9, 3, 6);
+        }
+        else if (row < 9 && col < 9) {
+            turnRed(6, 9, 6, 9);
+        }
+
+
     }
 
     //take value and position as argument
@@ -151,6 +196,7 @@
         var check1 = true;
         var check2 = true;
         var check3 = true;
+        console.log()
         for (var row = 0; row < Vboard.length; row++) {
             for (var col = 0; col < Vboard[row].length; col++) {
                 //id1 is position of the input value
@@ -182,7 +228,10 @@
                     }
                     //check for block
                     if (sameBlock(x1, y1, col, row)) {
+                        //change color to red
+                        blockRed(id1);
                         check3 = false;
+                        
                         break;
                     }
                 }
