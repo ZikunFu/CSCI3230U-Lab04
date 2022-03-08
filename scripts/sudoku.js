@@ -37,9 +37,9 @@
 
     
     //generate interface table
-    for (let i = 0; i <= 8; i++) {
+    for (let i = 0; i <= 10; i++) {
         let data = $('<td>');
-        if (i != 8) {
+        if (i != 10) {
             data.click(interfaceOnClick);
             data.text(i);
             interface.append(data);
