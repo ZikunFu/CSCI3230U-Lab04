@@ -7,7 +7,7 @@
         let tr = $('<tr>');
         for (let col = 0; col <= 8; col++) {
             let data = $('<td>');
-            data.text('-1');
+            data.text(' ');
             data.attr('id', '' + col + row);
             data.click(boardOnClick)
             tr.append(data);
@@ -64,7 +64,7 @@
     for (var row = 0; row < Vboard.length; row++) {
 
         for (var col = 0; col < Vboard[row].length; col++) {
-            Vboard[row][col] = '-1';
+            Vboard[row][col] = ' ';
         }
 
     }
@@ -96,8 +96,8 @@
 
     //clear last step
     function redo() {
-        Vboard[lastStep_id[0]][lastStep_id[1]] = -1;
-        getCell(lastStep_id).text('-1');
+        Vboard[lastStep_id[1]][lastStep_id[0]] = ' ';
+        getCell(lastStep_id).text(' ');
         
         for (var i = 0; i < 9; i++) {
             for (var y = 0; y < 9; y++) {
@@ -113,7 +113,7 @@
             alert("Pick a number first");
 
         }
-        else if (selected_value != '-1') {
+        else if (selected_value != ' ') {
             alert("This spot is taken");
         }
         else {
